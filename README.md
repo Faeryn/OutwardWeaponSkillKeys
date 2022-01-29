@@ -1,6 +1,8 @@
 # Weapon Skill Keys
 
-Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. Each keybind uses a skill depending on the currently equipped weapon.
+Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. 
+Each keybind uses a skill depending on the currently equipped weapon.  
+*Note: The mod does not add any new quick slots, the keybinds trigger the skills on their own.*
 
 ## Weapon skills
 ### Main hand weapon skills
