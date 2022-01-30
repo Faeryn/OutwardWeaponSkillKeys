@@ -1,7 +1,9 @@
 ﻿using System;
 using BepInEx;
 using BepInEx.Logging;
+using HarmonyLib;
 using SideLoader;
+using WeaponSkillKeys.Extensions;
 
 namespace WeaponSkillKeys {
 	[BepInDependency(SL.GUID, BepInDependency.DependencyFlags.HardDependency)]
@@ -14,14 +16,12 @@ namespace WeaponSkillKeys {
 
 		public static string KEY_MAINHAND_SKILL = "Main Weapon Skill";
 		public static string KEY_OFFHAND_SKILL = "Off-hand Skill";
-
-		private WeaponSkillManager weaponSkillManager;
-
+		
 		internal void Awake() {
 			Log = this.Logger;
 			Log.LogMessage($"Starting {NAME} {VERSION}");
 			InitializeKeybindings();
-			weaponSkillManager = new WeaponSkillManager();
+			new Harmony(GUID).PatchAll();
 		}
 
 		public void InitializeKeybindings() {
@@ -32,10 +32,17 @@ namespace WeaponSkillKeys {
 		private void Update() {
 			int playerID;
 			if (CustomKeybindings.GetKeyDown(KEY_MAINHAND_SKILL, out playerID)) {
-				weaponSkillManager.UseMainHandSkill(GetLocalCharacter(playerID));
+				UseWeaponSkill(playerID, CharacterExtensions.UseMainHandSkill);
 			} else if (CustomKeybindings.GetKeyDown(KEY_OFFHAND_SKILL, out playerID)) {
-				weaponSkillManager.UseOffHandSkill(GetLocalCharacter(playerID));
+				UseWeaponSkill(playerID, CharacterExtensions.UseOffHandSkill);
 			} 
+		}
+
+		private void UseWeaponSkill(int playerID, Action<Character> action) {
+			Character character = GetLocalCharacter(playerID);
+			if (character != null) {
+				action(character);
+			}
 		}
 
 		private Character GetLocalCharacter(int playerID) {

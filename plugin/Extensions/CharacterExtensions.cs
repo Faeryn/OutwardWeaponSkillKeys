@@ -1,16 +1,12 @@
 
 using System.Collections.Generic;
 
-namespace WeaponSkillKeys {
-	public class WeaponSkillManager {
+namespace WeaponSkillKeys.Extensions {
+	public static class CharacterExtensions {
 
-		private readonly Dictionary<Weapon.WeaponType, int> weaponSkills = new Dictionary<Weapon.WeaponType, int>();
+		private static readonly Dictionary<Weapon.WeaponType, int> weaponSkills = new Dictionary<Weapon.WeaponType, int>();
 
-		public WeaponSkillManager() {
-			InitializeWeaponSkills();
-		}
-
-		private void InitializeWeaponSkills() {
+		static CharacterExtensions() {
 			weaponSkills[Weapon.WeaponType.Sword_1H] = 8100290; // Puncture
 			weaponSkills[Weapon.WeaponType.Axe_1H] = 8100380; // Talus Cleaver
 			weaponSkills[Weapon.WeaponType.Mace_1H] = 8100270; // Mace Infusion
@@ -27,7 +23,7 @@ namespace WeaponSkillKeys {
 			weaponSkills[Weapon.WeaponType.Bow] = 8100100; // Evasion Shot
 		}
 
-		private bool TryGetLearnedSkill(Character character, int id, out Skill skill) {
+		public static bool TryGetLearnedSkill(this Character character, int id, out Skill skill) {
 			Item item = ((List<Item>)character.Inventory.SkillKnowledge.GetLearnedItems()).FindItemFromItemID(id);
 			if (item == null) {
 				skill = null;
@@ -42,7 +38,7 @@ namespace WeaponSkillKeys {
 			return true;
 		}
 
-		private bool TryGetSkillIDByWeapon(Weapon weapon, out int id) {
+		public static bool TryGetSkillIDByWeapon(this Weapon weapon, out int id) {
 			if (weapon == null) {
 				id = 0;
 				WeaponSkillKeys.Log.LogDebug("No weapon equipped");
@@ -58,22 +54,35 @@ namespace WeaponSkillKeys {
 			return true;
 		}
 
-		private void UseWeaponSkill(Character character, Weapon weapon) {
-			if (!TryGetSkillIDByWeapon(weapon, out int id)) {
-				return;
-			}
-			if (!TryGetLearnedSkill(character, id, out Skill skill)) {
+		private static void UseWeaponSkill(Character character, Weapon weapon) {
+			if (!TryGetWeaponSkill(character, weapon, out Skill skill)) {
 				return;
 			}
 			WeaponSkillKeys.Log.LogDebug($"Using skill: {skill}");
 			skill.TryQuickSlotUse();
 		}
+		
+		private static bool TryGetWeaponSkill(Character character, Weapon weapon, out Skill skill) {
+			if (character== null || weapon == null || !TryGetSkillIDByWeapon(weapon, out int id)) {
+				skill = null;
+				return false;
+			}
+			return TryGetLearnedSkill(character, id, out skill);
+		}
 
-		public void UseMainHandSkill(Character character) {
+		public static bool TryGetMainHandSkill(this Character character, out Skill skill) {
+			return TryGetWeaponSkill(character, character.CurrentWeapon, out skill);
+		}
+
+		public static bool TryGetOffHandSkill(this Character character, out Skill skill) {
+			return TryGetWeaponSkill(character, character.LeftHandWeapon, out skill);
+		}
+
+		public static void UseMainHandSkill(this Character character) {
 			UseWeaponSkill(character, character.CurrentWeapon);
 		}
 
-		public void UseOffHandSkill(Character character) {
+		public static void UseOffHandSkill(this Character character) {
 			UseWeaponSkill(character, character.LeftHandWeapon);
 		}
 	}
