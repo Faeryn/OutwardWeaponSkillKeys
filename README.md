@@ -29,9 +29,13 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 ## Planned Features
 - Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Potentially include Weapon Master skills
-- Show status of the currently equipped weapon's skill (learned, cooldown, enough stamina/mana)
+- HUD customization
+- Controller support
 
 ## Changelog
+
+### 1.1.0
+- Show current weapon skills and their cooldowns on the HUD
 
 ### 1.0.0
 - Initial release
