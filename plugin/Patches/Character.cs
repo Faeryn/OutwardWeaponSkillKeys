@@ -6,6 +6,9 @@ namespace WeaponSkillKeys.Patches {
 	public class Character_WeaponChanged {
 		[HarmonyPostfix]
 		static void Postfix(Character __instance) {
+			if (__instance.CharacterUI == null) {
+				return;
+			}
 			WeaponSkillDisplay wsd = __instance.CharacterUI.GetWeaponSkillDisplay();
 			if (wsd == null) {
 				return;
@@ -22,6 +25,9 @@ namespace WeaponSkillKeys.Patches {
 	public class Character_LeftHandChanged {
 		[HarmonyPostfix]
 		static void Postfix(Character __instance) {
+			if (__instance.CharacterUI == null) {
+				return;
+			}
 			WeaponSkillDisplay wsd = __instance.CharacterUI.GetWeaponSkillDisplay();
 			if (wsd == null) {
 				return;
