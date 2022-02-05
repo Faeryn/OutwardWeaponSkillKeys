@@ -11,7 +11,7 @@ namespace WeaponSkillKeys {
 	public class WeaponSkillKeys : BaseUnityPlugin {
 		public const string GUID = "faeryn.weaponskillkeys";
 		public const string NAME = "WeaponSkillKeys";
-		public const string VERSION = "1.1.0";
+		public const string VERSION = "1.1.1";
 		internal static ManualLogSource Log;
 
 		public static string KEY_MAINHAND_SKILL = "Main Weapon Skill";

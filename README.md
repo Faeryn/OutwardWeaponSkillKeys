@@ -34,6 +34,9 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 
 ## Changelog
 
+### 1.1.1
+- Fixed endless loading screen when starting a new game
+
 ### 1.1.0
 - Show current weapon skills and their cooldowns on the HUD
 
