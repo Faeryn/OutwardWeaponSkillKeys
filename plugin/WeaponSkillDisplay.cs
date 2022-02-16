@@ -6,15 +6,21 @@ namespace WeaponSkillKeys {
 		private ItemDisplay offHandSkillDisplay;
 
 		protected override void AwakeInit() {
-			mainHandSkillDisplay = CreateWeaponSkillDisplay(new Vector3(150, -480, 0));
-			offHandSkillDisplay = CreateWeaponSkillDisplay(new Vector3(-150, -480, 0));
+			mainHandSkillDisplay = CreateWeaponSkillDisplay();
+			offHandSkillDisplay = CreateWeaponSkillDisplay();
+			UpdatePosition();
+		}
+		
+		public void UpdatePosition() {
+			transform.localPosition = new Vector3(WeaponSkillKeys.WeaponSkillKeysPosX.Value, -WeaponSkillKeys.WeaponSkillKeysPosY.Value, 0f);
+			mainHandSkillDisplay.transform.localPosition = new Vector3(WeaponSkillKeys.MainHandSkillPosX.Value, -WeaponSkillKeys.MainHandSkillPosY.Value, 0f);
+			offHandSkillDisplay.transform.localPosition = new Vector3(WeaponSkillKeys.OffHandSkillPosX.Value, -WeaponSkillKeys.OffHandSkillPosY.Value, 0f);
 		}
 
-		private ItemDisplay CreateWeaponSkillDisplay(Vector3 position) {
+		private ItemDisplay CreateWeaponSkillDisplay() {
 			ItemDisplay itemDisplay = Instantiate(UIUtilities.ItemDisplayPrefab, transform);
 			Transform displayTransform = itemDisplay.transform;
 			displayTransform.ResetLocal();
-			displayTransform.localPosition = position;
 			itemDisplay.Clear();
 			itemDisplay.ShowCooldown = true;
 			return itemDisplay;
