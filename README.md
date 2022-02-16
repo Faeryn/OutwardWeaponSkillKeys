@@ -32,7 +32,6 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 - Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Potentially include Weapon Master skills
 - Drag-and-drop HUD element repositioning
-- Controller support
 - Split screen support
 
 ## Changelog

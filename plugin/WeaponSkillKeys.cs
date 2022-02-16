@@ -60,8 +60,8 @@ namespace WeaponSkillKeys {
 		}
 
 		public void InitializeKeybindings() {
-			CustomKeybindings.AddAction(KEY_MAINHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Keyboard);
-			CustomKeybindings.AddAction(KEY_OFFHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Keyboard);
+			CustomKeybindings.AddAction(KEY_MAINHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Both);
+			CustomKeybindings.AddAction(KEY_OFFHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Both);
 		}
 
 		private void Update() {
