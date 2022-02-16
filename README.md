@@ -4,6 +4,8 @@ Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific atta
 Each keybind uses a skill depending on the currently equipped weapon.  
 *Note: The mod does not add any new quick slots, the keybinds trigger the skills on their own.*
 
+It's strongly recommended to use Outward Config Manager to set HUD element position.
+
 ## Weapon skills
 ### Main hand weapon skills
 - **One-Handed Axe**: Talus Cleaver
@@ -29,10 +31,14 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 ## Planned Features
 - Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Potentially include Weapon Master skills
-- HUD customization
+- Drag-and-drop HUD element repositioning
 - Controller support
+- Split screen support
 
 ## Changelog
+
+### 1.2.0
+- Ability to reposition the HUD elements
 
 ### 1.1.1
 - Fixed endless loading screen when starting a new game
