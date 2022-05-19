@@ -36,6 +36,9 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 
 ## Changelog
 
+### v1.2.1
+- Definitive Edition support (vanilla might still work, untested)
+
 ### 1.2.0
 - Ability to reposition the HUD elements
 

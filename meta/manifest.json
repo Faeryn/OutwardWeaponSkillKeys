@@ -1,7 +1,7 @@
 {
     "name": "WeaponSkillKeys",
     "author": "Faeryn",
-    "version_number": "1.2.0",
+    "version_number": "1.2.1",
     "website_url": "https://github.com/Faeryn/OutwardWeaponSkillKeys",
     "description": "Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. Each keybind uses a skill depending on the currently equipped weapon.",
     "dependencies": [
