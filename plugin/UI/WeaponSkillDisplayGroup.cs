@@ -19,6 +19,8 @@ namespace WeaponSkillKeys.UI {
 
 		private ItemDisplay CreateWeaponSkillDisplay() {
 			ItemDisplay itemDisplay = Instantiate(UIUtilities.ItemDisplayPrefab, transform);
+			Destroy(itemDisplay.gameObject.GetComponent<ItemDisplay>());
+			itemDisplay.gameObject.AddComponent<WeaponSkillDisplay>();
 			Transform displayTransform = itemDisplay.transform;
 			displayTransform.ResetLocal();
 			itemDisplay.Clear();
