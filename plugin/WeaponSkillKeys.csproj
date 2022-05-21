@@ -17,7 +17,18 @@
 	<ItemGroup>
 		<PackageReference Include="BepInEx.BaseLib" Version="5.4.18" />
 		<PackageReference Include="HarmonyX" Version="2.5.7" />
-		<PackageReference Include="Outward.GameLibs" Version="2022.5.18-r.0" />
 		<PackageReference Include="Outward.SideLoader" Version="3.7.0" />
+		<PackageReference Include="UnityEngine.Modules" Version="2020.3.26" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Assembly-CSharp-firstpass">
+	    <HintPath>..\lib\Assembly-CSharp-firstpass.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.UI">
+	    <HintPath>..\lib\UnityEngine.UI.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 </Project>
