@@ -5,6 +5,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using SideLoader;
 using WeaponSkillKeys.Extensions;
+using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys {
 	[BepInDependency(SL.GUID, BepInDependency.DependencyFlags.HardDependency)]
@@ -51,10 +52,10 @@ namespace WeaponSkillKeys {
 			BindPosSetting("Off-hand skill display", -150, 0, out OffHandSkillPosX, out OffHandSkillPosY);
 		}
 		
-		public static void ApplyToWeaponSkillDisplays(Action<WeaponSkillDisplay> func) {
+		public static void ApplyToWeaponSkillDisplays(Action<WeaponSkillDisplayGroup> func) {
 			foreach (Character character in CharacterManager.Instance.Characters.Values) {
-				if (character != null || character.CharacterUI != null || character.CharacterUI.GetWeaponSkillDisplay() != null) {
-					func(character.CharacterUI.GetWeaponSkillDisplay());
+				if (character != null || character.CharacterUI != null || character.CharacterUI.GetWeaponSkillDisplayGroup() != null) {
+					func(character.CharacterUI.GetWeaponSkillDisplayGroup());
 				}
 			}
 		}

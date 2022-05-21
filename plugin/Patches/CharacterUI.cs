@@ -1,6 +1,7 @@
 using HarmonyLib;
 using UnityEngine;
 using WeaponSkillKeys.Extensions;
+using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys.Patches {
 	[HarmonyPatch(typeof(CharacterUI), "Awake")]
@@ -10,7 +11,7 @@ namespace WeaponSkillKeys.Patches {
 			GameObject hud = __instance.GetHUDCanvasGroup().gameObject;
 			GameObject weaponSkillsObj = new GameObject("WeaponSkillDisplay");
 			weaponSkillsObj.transform.SetParent(hud.transform, false);
-			weaponSkillsObj.AddComponent<WeaponSkillDisplay>();
+			weaponSkillsObj.AddComponent<WeaponSkillDisplayGroup>();
 		}
 	}
 }

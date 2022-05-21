@@ -1,6 +1,7 @@
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys.Extensions {
 	public static class CharacterUIExtensions {
@@ -10,8 +11,8 @@ namespace WeaponSkillKeys.Extensions {
 			return (CanvasGroup) characterUI_hudCanvasGroup.GetValue(characterUI);
 		}
 
-		public static WeaponSkillDisplay GetWeaponSkillDisplay(this CharacterUI characterUI) {
-			return characterUI.GetComponentInChildren<WeaponSkillDisplay>();
+		public static WeaponSkillDisplayGroup GetWeaponSkillDisplayGroup(this CharacterUI characterUI) {
+			return characterUI.GetComponentInChildren<WeaponSkillDisplayGroup>();
 		}
 	}
 }

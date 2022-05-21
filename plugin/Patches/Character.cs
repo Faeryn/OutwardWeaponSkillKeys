@@ -1,5 +1,6 @@
 using HarmonyLib;
 using WeaponSkillKeys.Extensions;
+using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys.Patches {
 	[HarmonyPatch(typeof(Character), nameof(Character.WeaponChanged))]
@@ -9,7 +10,7 @@ namespace WeaponSkillKeys.Patches {
 			if (__instance.CharacterUI == null) {
 				return;
 			}
-			WeaponSkillDisplay wsd = __instance.CharacterUI.GetWeaponSkillDisplay();
+			WeaponSkillDisplayGroup wsd = __instance.CharacterUI.GetWeaponSkillDisplayGroup();
 			if (wsd == null) {
 				return;
 			}
@@ -28,7 +29,7 @@ namespace WeaponSkillKeys.Patches {
 			if (__instance.CharacterUI == null) {
 				return;
 			}
-			WeaponSkillDisplay wsd = __instance.CharacterUI.GetWeaponSkillDisplay();
+			WeaponSkillDisplayGroup wsd = __instance.CharacterUI.GetWeaponSkillDisplayGroup();
 			if (wsd == null) {
 				return;
 			}

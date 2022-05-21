@@ -1,11 +1,11 @@
 using UnityEngine;
 
-namespace WeaponSkillKeys {
-	public class WeaponSkillDisplay : UIElement {
+namespace WeaponSkillKeys.UI {
+	public class WeaponSkillDisplayGroup : UIElement {
 		private ItemDisplay mainHandSkillDisplay;
 		private ItemDisplay offHandSkillDisplay;
 
-		public override void AwakeInit() {
+		protected override void AwakeInit() {
 			mainHandSkillDisplay = CreateWeaponSkillDisplay();
 			offHandSkillDisplay = CreateWeaponSkillDisplay();
 			UpdatePosition();
