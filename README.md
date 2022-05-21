@@ -36,6 +36,10 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 
 ## Changelog
 
+### v1.3.0
+- Fire/reload now shows bullet count and the proper image based on the pistol's state
+- Fix for a possible bug where the keybinds didn't work because of DE
+
 ### v1.2.1
 - Definitive Edition support (vanilla might still work, untested)
 
