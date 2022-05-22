@@ -29,6 +29,10 @@ namespace WeaponSkillKeys.UI {
         }
 
         public void Clear() {
+            SkillCooldownDisplay cooldownDisplay = itemDisplay.GetCooldownDisplay();
+            if (cooldownDisplay) {
+                cooldownDisplay.SetReferencedItem(null);
+            }
             itemDisplay.Clear();
             lblQuantity.text = "";
         }
