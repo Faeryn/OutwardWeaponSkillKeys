@@ -27,5 +27,15 @@ namespace WeaponSkillKeys.UI {
                 lblQuantity.text = count > -1 ? count.ToString() : "";
             }
         }
+
+        public void Clear() {
+            itemDisplay.Clear();
+            lblQuantity.text = "";
+        }
+
+        public void SetSkill(Skill skill) {
+            lblQuantity.text = "";
+            itemDisplay.SetReferencedItem(skill);
+        }
     }
 }

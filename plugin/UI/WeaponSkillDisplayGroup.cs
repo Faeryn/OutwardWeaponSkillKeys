@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace WeaponSkillKeys.UI {
 	public class WeaponSkillDisplayGroup : UIElement {
-		private ItemDisplay mainHandSkillDisplay;
-		private ItemDisplay offHandSkillDisplay;
+		private WeaponSkillDisplay mainHandSkillDisplay;
+		private WeaponSkillDisplay offHandSkillDisplay;
 
 		protected override void AwakeInit() {
 			mainHandSkillDisplay = CreateWeaponSkillDisplay();
@@ -17,23 +17,23 @@ namespace WeaponSkillKeys.UI {
 			offHandSkillDisplay.transform.localPosition = new Vector3(WeaponSkillKeys.OffHandSkillPosX.Value, -WeaponSkillKeys.OffHandSkillPosY.Value, 0f);
 		}
 
-		private ItemDisplay CreateWeaponSkillDisplay() {
+		private WeaponSkillDisplay CreateWeaponSkillDisplay() {
 			ItemDisplay itemDisplay = Instantiate(UIUtilities.ItemDisplayPrefab, transform);
 			Destroy(itemDisplay.gameObject.GetComponent<ItemDisplay>());
-			itemDisplay.gameObject.AddComponent<WeaponSkillDisplay>();
+			WeaponSkillDisplay weaponSkillDisplay = itemDisplay.gameObject.AddComponent<WeaponSkillDisplay>();
 			Transform displayTransform = itemDisplay.transform;
 			displayTransform.ResetLocal();
 			itemDisplay.Clear();
 			itemDisplay.ShowCooldown = true;
-			return itemDisplay;
+			return weaponSkillDisplay;
 		}
 
 		public void SetMainHandSkill(Skill skill) {
-			mainHandSkillDisplay.SetReferencedItem(skill);
+			mainHandSkillDisplay.SetSkill(skill);
 		}
 
 		public void SetOffHandSkill(Skill skill) {
-			offHandSkillDisplay.SetReferencedItem(skill);
+			offHandSkillDisplay.SetSkill(skill);
 		}
 
 		public void ClearMainHandSkill() {
