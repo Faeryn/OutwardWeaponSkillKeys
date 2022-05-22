@@ -12,6 +12,10 @@ namespace WeaponSkillKeys.UI {
             itemDisplay = GetComponent<ItemDisplay>();
             imgItemIcon = transform.Find("Icon").GetComponent<Image>();
             lblQuantity = transform.Find("lblQuantity").GetComponent<Text>();
+            
+            Image imgNewIcon = transform.Find("imgNew").GetComponent<Image>();
+            Destroy(imgNewIcon);
+            
             itemDisplay.SetLblQuantity(null);
         }
 
