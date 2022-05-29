@@ -28,6 +28,11 @@ namespace WeaponSkillKeys.UI {
 			return weaponSkillDisplay;
 		}
 
+		public void UpdateVisibility() {
+			mainHandSkillDisplay.UpdateVisibility();
+			offHandSkillDisplay.UpdateVisibility();
+		}
+
 		public void SetMainHandSkill(Skill skill) {
 			mainHandSkillDisplay.SetSkill(skill);
 		}

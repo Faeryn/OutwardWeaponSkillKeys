@@ -26,6 +26,7 @@ namespace WeaponSkillKeys {
 		public static ConfigEntry<float> MainHandSkillPosY;
 		public static ConfigEntry<float> OffHandSkillPosX;
 		public static ConfigEntry<float> OffHandSkillPosY;
+		public static ConfigEntry<bool> HideEmpty;
 		
 		internal void Awake() {
 			Log = this.Logger;
@@ -47,6 +48,10 @@ namespace WeaponSkillKeys {
 		}
 
 		private void InitializeConfig() {
+			HideEmpty = Config.Bind(DISPLAY_NAME, "Hide Empty", false, "Hides empty weapon skill displays (if there is no weapon in the slot or the skill is not known)");
+			HideEmpty.SettingChanged += (sender, args) => {
+				ApplyToWeaponSkillDisplays(wsd => wsd.UpdateVisibility());
+			};
 			BindPosSetting("Weapon skills display", 0, 480, out WeaponSkillKeysPosX, out WeaponSkillKeysPosY);
 			BindPosSetting("Main Weapon skill display", 150, 0, out MainHandSkillPosX, out MainHandSkillPosY);
 			BindPosSetting("Off-hand skill display", -150, 0, out OffHandSkillPosX, out OffHandSkillPosY);

@@ -39,11 +39,21 @@ namespace WeaponSkillKeys.UI {
             }
             itemDisplay.Clear();
             lblQuantity.text = "";
+            UpdateVisibility();
+        }
+
+        public void UpdateVisibility() {
+            if (!WeaponSkillKeys.HideEmpty.Value || itemDisplay.RefItem) {
+                itemDisplay.Show();
+            } else {
+                itemDisplay.Hide();
+            }
         }
 
         public void SetSkill(Skill skill) {
             lblQuantity.text = "";
             itemDisplay.SetReferencedItem(skill);
+            UpdateVisibility();
         }
     }
 }
