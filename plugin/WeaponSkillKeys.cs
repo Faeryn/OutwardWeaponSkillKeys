@@ -17,9 +17,6 @@ namespace WeaponSkillKeys {
 		public const string VERSION = "1.3.1";
 		internal static ManualLogSource Log;
 
-		public static string KEY_MAINHAND_SKILL = "Main Weapon Skill";
-		public static string KEY_OFFHAND_SKILL = "Off-hand Skill";
-		
 		public static ConfigEntry<float> WeaponSkillKeysPosX;
 		public static ConfigEntry<float> WeaponSkillKeysPosY;
 		public static ConfigEntry<float> MainHandSkillPosX;
@@ -27,11 +24,14 @@ namespace WeaponSkillKeys {
 		public static ConfigEntry<float> OffHandSkillPosX;
 		public static ConfigEntry<float> OffHandSkillPosY;
 		public static ConfigEntry<bool> HideEmpty;
+		public static ConfigEntry<bool> HoldToReload;
+
+		private WeaponSkillKeysManager keyManager = new WeaponSkillKeysManager();
 		
 		internal void Awake() {
 			Log = this.Logger;
 			Log.LogMessage($"Starting {NAME} {VERSION}");
-			InitializeKeybindings();
+			keyManager.InitializeKeybindings();
 			InitializeConfig();
 			new Harmony(GUID).PatchAll();
 		}
@@ -52,6 +52,7 @@ namespace WeaponSkillKeys {
 			HideEmpty.SettingChanged += (sender, args) => {
 				ApplyToWeaponSkillDisplays(wsd => wsd.UpdateVisibility());
 			};
+			HoldToReload = Config.Bind(DISPLAY_NAME, "Hold Fire/Reload button to reload", true, "Note: Only works with the weapon skill key. If you bind the Fire/Reload skill to a quickslot, it will work as in vanilla.");
 			BindPosSetting("Weapon skills display", 0, 480, out WeaponSkillKeysPosX, out WeaponSkillKeysPosY);
 			BindPosSetting("Main Weapon skill display", 150, 0, out MainHandSkillPosX, out MainHandSkillPosY);
 			BindPosSetting("Off-hand skill display", -150, 0, out OffHandSkillPosX, out OffHandSkillPosY);
@@ -65,29 +66,9 @@ namespace WeaponSkillKeys {
 			}
 		}
 
-		public void InitializeKeybindings() {
-			CustomKeybindings.AddAction(KEY_MAINHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Both);
-			CustomKeybindings.AddAction(KEY_OFFHAND_SKILL, KeybindingsCategory.CustomKeybindings, ControlType.Both);
-		}
-
 		private void Update() {
-			int playerID;
-			if (CustomKeybindings.GetKeyDown(KEY_MAINHAND_SKILL, out playerID)) {
-				UseWeaponSkill(playerID, CharacterExtensions.UseMainHandSkill);
-			} else if (CustomKeybindings.GetKeyDown(KEY_OFFHAND_SKILL, out playerID)) {
-				UseWeaponSkill(playerID, CharacterExtensions.UseOffHandSkill);
-			} 
+			keyManager.Update();
 		}
 
-		private void UseWeaponSkill(int playerID, Action<Character> action) {
-			Character character = GetLocalCharacter(playerID);
-			if (character != null) {
-				action(character);
-			}
-		}
-
-		private Character GetLocalCharacter(int playerID) {
-			return SplitScreenManager.Instance.LocalPlayers[playerID].AssignedCharacter;
-		}
 	}
 }

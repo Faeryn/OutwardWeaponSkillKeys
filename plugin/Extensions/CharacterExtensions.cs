@@ -54,10 +54,15 @@ namespace WeaponSkillKeys.Extensions {
 			return true;
 		}
 
-		private static void UseWeaponSkill(Character character, Weapon weapon) {
+		private static void UseWeaponSkill(Character character, Weapon weapon, bool isSpecial = false) {
 			if (!TryGetWeaponSkill(character, weapon, out Skill skill)) {
 				return;
 			}
+
+			if (WeaponSkillKeys.HoldToReload.Value && skill.ItemID == 8200600 && isSpecial != weapon.IsEmpty) { // Fire/Reload
+				return;
+			}
+			
 			WeaponSkillKeys.Log.LogDebug($"Using skill: {skill}");
 			skill.TryQuickSlotUse();
 		}
@@ -84,6 +89,10 @@ namespace WeaponSkillKeys.Extensions {
 
 		public static void UseOffHandSkill(this Character character) {
 			UseWeaponSkill(character, character.LeftHandWeapon);
+		}
+
+		public static void UseSpecialOffHandSkill(this Character character) {
+			UseWeaponSkill(character, character.LeftHandWeapon, true);
 		}
 	}
 }
