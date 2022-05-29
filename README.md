@@ -2,6 +2,7 @@
 
 Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. 
 Each keybind uses a skill depending on the currently equipped weapon.  
+When a pistol is equipped, the off-hand button for Fire/Reload needs to be held to reload the pistol (to prevent accidental reload). This is optional, enabled by default.  
 *Note: The mod does not add any new quick slots, the keybinds trigger the skills on their own.*
 
 It's strongly recommended to use Outward Config Manager to set HUD element position.
@@ -22,14 +23,13 @@ It's strongly recommended to use Outward Config Manager to set HUD element posit
 ### Off-hand weapon skills
 - **Chakram**: Chakram Pierce
 - **Dagger**: Dagger Slash
-- **Pistol**: Fire / Reload
+- **Pistol**: Fire / Reload *(Note: By default, the button needs to be held to reload the pistol)*
 - **Shield**: Shield Charge
 
 Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has no effect.  
 *Note: You still have to learn the skill before you can use it.*
 
 ## Planned Features
-- Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Potentially include Weapon Master skills
 - Drag-and-drop HUD element repositioning
 - Split screen support
@@ -40,6 +40,7 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 ## Changelog
 
 ### v1.4.0
+- Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Option to hide HUD elements instead of showing empty when the skill is not learned or there is no weapon in that slot
 
 ### v1.3.1
