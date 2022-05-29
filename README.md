@@ -33,11 +33,14 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 - Potentially include Weapon Master skills
 - Drag-and-drop HUD element repositioning
 - Split screen support
-- Option for hiding HUD elements instead of showing empty when the skill is not learned or no weapon in that slot
 - Option to resize HUD elements
 - Update UI when skill is learned (right now it only shows up when the player re-equips the weapon)
+- Ability to change what skill is executed for each weapon (select from a list of weapon-specific skills)
 
 ## Changelog
+
+### v1.4.0
+- Option to hide HUD elements instead of showing empty when the skill is not learned or there is no weapon in that slot
 
 ### v1.3.1
 - Bullet count display no longer visible after unequipping pistol
