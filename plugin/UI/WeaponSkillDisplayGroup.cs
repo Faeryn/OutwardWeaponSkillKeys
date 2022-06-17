@@ -5,7 +5,7 @@ namespace WeaponSkillKeys.UI {
 		private WeaponSkillDisplay mainHandSkillDisplay;
 		private WeaponSkillDisplay offHandSkillDisplay;
 
-		protected override void AwakeInit() {
+		public override void AwakeInit() {
 			mainHandSkillDisplay = CreateWeaponSkillDisplay();
 			offHandSkillDisplay = CreateWeaponSkillDisplay();
 			UpdatePosition();
