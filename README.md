@@ -25,8 +25,9 @@ It's strongly recommended to use Outward Config Manager to set HUD element posit
 - **Dagger**: Dagger Slash
 - **Pistol**: Fire / Reload *(Note: By default, the button needs to be held to reload the pistol)*
 - **Shield**: Shield Charge
+- **Lantern/Torch**: Flamethrower
 
-Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has no effect.  
+Using the off-hand skill button with a **Lexicon** equipped has no effect.  
 *Note: You still have to learn the skill before you can use it.*
 
 ## Planned Features
@@ -36,8 +37,12 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 - Option to resize HUD elements
 - Update UI when skill is learned (right now it only shows up when the player re-equips the weapon)
 - Ability to change what skill is executed for each weapon (select from a list of weapon-specific skills)
+- Torch and Lantern check in a more compatible manner
 
 ## Changelog
+
+### v1.4.2
+- Torch and Lantern skill added (Flamethrower). This is an unstable/experimental feature. If anything breaks, use the previous version.
 
 ### v1.4.1
 - Weapon skill keys no longer trigger when a menu is open
