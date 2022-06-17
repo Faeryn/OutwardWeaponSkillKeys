@@ -34,7 +34,7 @@ namespace WeaponSkillKeys {
 
 		private void UseWeaponSkill(int playerID, Action<Character> action) {
 			Character character = GetLocalCharacter(playerID);
-			if (character != null) {
+			if (character != null && !(character.CharacterUI && character.CharacterUI.IsMenuFocused)) {
 				action(character);
 			}
 		}
