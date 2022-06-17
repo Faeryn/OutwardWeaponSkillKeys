@@ -38,28 +38,39 @@ namespace WeaponSkillKeys.Extensions {
 			return true;
 		}
 
-		public static bool TryGetSkillIDByWeapon(this Weapon weapon, out int id) {
-			if (weapon == null) {
+		public static bool TryGetSkillIDByEquipment(Equipment equipment, out int id) {
+			if (equipment == null) {
 				id = 0;
 				WeaponSkillKeys.Log.LogDebug("No weapon equipped");
 				return false;
 			}
-			Weapon.WeaponType weaponType = weapon.Type;
-			if (!weaponSkills.ContainsKey(weaponType)) {
+
+			Weapon weapon = equipment as Weapon;
+			if (weapon) {
+				Weapon.WeaponType weaponType = weapon.Type;
+				if (!weaponSkills.ContainsKey(weaponType)) {
+					id = 0;
+					WeaponSkillKeys.Log.LogDebug($"Weapon {weaponType} does not have a skill");
+					return false;
+				}
+				id = weaponSkills[weaponType];
+			} else if (equipment.IKType == Equipment.IKMode.Lantern || equipment.IKType ==  Equipment.IKMode.Torch) {
+				id = 8100090; // Flamethrower
+			} else {
+				WeaponSkillKeys.Log.LogDebug($"Equipment {equipment.Name} does not have a skill");
 				id = 0;
-				WeaponSkillKeys.Log.LogDebug($"Weapon {weaponType} does not have a skill");
 				return false;
 			}
-			id = weaponSkills[weaponType];
+			
 			return true;
 		}
 
-		private static void UseWeaponSkill(Character character, Weapon weapon, bool isSpecial = false) {
-			if (!TryGetWeaponSkill(character, weapon, out Skill skill)) {
+		private static void UseWeaponSkill(Character character, Equipment equipment, bool isSpecial = false) {
+			if (!TryGetWeaponSkill(character, equipment, out Skill skill)) {
 				return;
 			}
-
-			if (WeaponSkillKeys.HoldToReload.Value && skill.ItemID == 8200600 && isSpecial != weapon.IsEmpty) { // Fire/Reload
+			
+			if (equipment is Weapon && WeaponSkillKeys.HoldToReload.Value && skill.ItemID == 8200600 && isSpecial != ((Weapon)equipment).IsEmpty) { // Fire/Reload
 				return;
 			}
 			
@@ -67,8 +78,8 @@ namespace WeaponSkillKeys.Extensions {
 			skill.TryQuickSlotUse();
 		}
 		
-		private static bool TryGetWeaponSkill(Character character, Weapon weapon, out Skill skill) {
-			if (character== null || weapon == null || !TryGetSkillIDByWeapon(weapon, out int id)) {
+		private static bool TryGetWeaponSkill(Character character, Equipment equipment, out Skill skill) {
+			if (character== null || equipment == null || !TryGetSkillIDByEquipment(equipment, out int id)) {
 				skill = null;
 				return false;
 			}
@@ -80,7 +91,7 @@ namespace WeaponSkillKeys.Extensions {
 		}
 
 		public static bool TryGetOffHandSkill(this Character character, out Skill skill) {
-			return TryGetWeaponSkill(character, character.LeftHandWeapon, out skill);
+			return TryGetWeaponSkill(character, character.LeftHandEquipment, out skill);
 		}
 
 		public static void UseMainHandSkill(this Character character) {
@@ -88,7 +99,7 @@ namespace WeaponSkillKeys.Extensions {
 		}
 
 		public static void UseOffHandSkill(this Character character) {
-			UseWeaponSkill(character, character.LeftHandWeapon);
+			UseWeaponSkill(character, character.LeftHandEquipment);
 		}
 
 		public static void UseSpecialOffHandSkill(this Character character) {
