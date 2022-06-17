@@ -39,6 +39,9 @@ Using the off-hand skill button with a **Lexicon** or **Lantern** equipped has n
 
 ## Changelog
 
+### v1.4.1
+- Weapon skill keys no longer trigger when a menu is open
+
 ### v1.4.0
 - Hold off-hand button to reload pistol (to prevent accidental reload in the middle of combat)
 - Option to hide HUD elements instead of showing empty when the skill is not learned or there is no weapon in that slot
