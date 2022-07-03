@@ -43,7 +43,7 @@ Using the off-hand skill button with a **Lexicon** equipped has no effect.
 ## What to do when the mod doesn't work as intended?
 There is a slight chance that the mod may break (and break your game) in various exciting ways.
 If anything untoward happens (or nothing happens, which is also a problem), please do **one** of the following:
-- Open a [GitHub issue](https://github.com/Faeryn/OutwardBetterInventory/issues/new)
+- Open a [GitHub issue](https://github.com/Faeryn/OutwardWeaponSkillKeys/issues/new)
 - Report it to me on the [Outward Modding Community](https://discord.gg/zKyfGmy7TR) Discord
 
 I'd love if you also attached a list of mods you are using, and the log from `Outward\Outward_Defed\output_log.txt`.
