@@ -2,9 +2,16 @@ using System.Collections.Generic;
 using WeaponSkillKeys.Selector;
 
 namespace WeaponSkillKeys.Extensions {
-	public static class  EquipmentExtensions {
+	public static class EquipmentExtensions {
 		
-		private static readonly List<(ItemSelector, int)> WeaponSkills = new List<(ItemSelector, int)>{
+		// More specific selectors must precede more generic ones
+		
+		private static readonly List<(ItemSelector, int)> EquipmentSkills = new List<(ItemSelector, int)>{
+			////// Mod equipment //////
+			// Knives Master
+			(new WeaponTypeSelector(Weapon.WeaponType.Sword_1H).And(new TagNameSelector("Knife")), -23035), // Blink Strike
+			
+			////// Vanilla equipment //////
 			(new WeaponTypeSelector(Weapon.WeaponType.Sword_1H), 8100290), // Puncture
 			(new WeaponTypeSelector(Weapon.WeaponType.Axe_1H), 8100380), // Talus Cleaver
 			(new WeaponTypeSelector(Weapon.WeaponType.Mace_1H), 8100270), // Mace Infusion
@@ -21,9 +28,15 @@ namespace WeaponSkillKeys.Extensions {
 			(new WeaponTypeSelector(Weapon.WeaponType.Bow), 8100100), // Evasion Shot
 			(new IKModeSelector(Equipment.IKMode.Lantern).Or(new IKModeSelector(Equipment.IKMode.Torch)), 8100090) // Flamethrower
 		};
+		
+		private static readonly List<(ItemSelector, ItemSelector, int)> DualEquipmentSkills = new List<(ItemSelector, ItemSelector, int)> {
+			////// Mod equipment //////
+			// Knives Master
+			(new WeaponTypeSelector(Weapon.WeaponType.Dagger_OH), new WeaponTypeSelector(Weapon.WeaponType.Sword_1H).And(new TagNameSelector("Knife")), -23041) // Dual Slash
+		};
 
 		public static bool TryGetSkillID(this Equipment equipment, out int id) {
-			(ItemSelector, int) weaponSkill = WeaponSkills.Find(tuple => tuple.Item1.isEligible(equipment));
+			(ItemSelector, int) weaponSkill = EquipmentSkills.Find(tuple => tuple.Item1.isEligible(equipment));
 			if (weaponSkill.Equals(default((ItemSelector, int)))){
 				id = 0;
 				WeaponSkillKeys.Log.LogDebug($"Equipment {equipment} does not have a skill");
@@ -31,7 +44,19 @@ namespace WeaponSkillKeys.Extensions {
 			}
 			
 			id = weaponSkill.Item2;
+			return true;
+		}
 
+		public static bool TryGetSkillID(this Equipment equipment, Equipment otherEquipment, out int id) {
+			if (!otherEquipment) {
+				return TryGetSkillID(equipment, out id);
+			}
+			(ItemSelector, ItemSelector, int) weaponSkill = DualEquipmentSkills.Find(tuple => tuple.Item1.isEligible(equipment) && tuple.Item2.isEligible(otherEquipment));
+			if (weaponSkill.Equals(default((ItemSelector, ItemSelector, int)))){
+				return TryGetSkillID(equipment, out id);
+			}
+			
+			id = weaponSkill.Item3;
 			return true;
 		}
 	}

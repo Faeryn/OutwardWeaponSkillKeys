@@ -19,8 +19,8 @@ namespace WeaponSkillKeys.Extensions {
 			return true;
 		}
 
-		private static void UseWeaponSkill(Character character, Equipment equipment, bool isSpecial = false) {
-			if (!TryGetWeaponSkill(character, equipment, out Skill skill)) {
+		private static void UseWeaponSkill(Character character, Equipment equipment, Equipment otherEquipment, bool isSpecial = false) {
+			if (!TryGetWeaponSkill(character, equipment, otherEquipment, out Skill skill)) {
 				return;
 			}
 			
@@ -32,8 +32,8 @@ namespace WeaponSkillKeys.Extensions {
 			skill.TryQuickSlotUse();
 		}
 		
-		private static bool TryGetWeaponSkill(Character character, Equipment equipment, out Skill skill) {
-			if (character== null || equipment == null || !equipment.TryGetSkillID(out int id)) {
+		private static bool TryGetWeaponSkill(Character character, Equipment equipment, Equipment otherEquipment, out Skill skill) {
+			if (character == null || equipment == null || !equipment.TryGetSkillID(otherEquipment, out int id)) {
 				skill = null;
 				return false;
 			}
@@ -41,23 +41,23 @@ namespace WeaponSkillKeys.Extensions {
 		}
 
 		public static bool TryGetMainHandSkill(this Character character, out Skill skill) {
-			return TryGetWeaponSkill(character, character.CurrentWeapon, out skill);
+			return TryGetWeaponSkill(character, character.CurrentWeapon, character.LeftHandEquipment, out skill);
 		}
 
 		public static bool TryGetOffHandSkill(this Character character, out Skill skill) {
-			return TryGetWeaponSkill(character, character.LeftHandEquipment, out skill);
+			return TryGetWeaponSkill(character, character.LeftHandEquipment, character.CurrentWeapon, out skill);
 		}
 
 		public static void UseMainHandSkill(this Character character) {
-			UseWeaponSkill(character, character.CurrentWeapon);
+			UseWeaponSkill(character, character.CurrentWeapon, character.LeftHandEquipment);
 		}
 
 		public static void UseOffHandSkill(this Character character) {
-			UseWeaponSkill(character, character.LeftHandEquipment);
+			UseWeaponSkill(character, character.LeftHandEquipment, character.CurrentWeapon);
 		}
 
 		public static void UseSpecialOffHandSkill(this Character character) {
-			UseWeaponSkill(character, character.LeftHandWeapon, true);
+			UseWeaponSkill(character, character.LeftHandWeapon, character.CurrentWeapon, true);
 		}
 	}
 }
