@@ -10,6 +10,7 @@ It's strongly recommended to use Outward Config Manager to set HUD element posit
 
 ## Weapon skills
 ### Main hand weapon skills
+#### Vanilla Outward weapons
 - **One-Handed Axe**: Talus Cleaver
 - **Two-Handed Axe**: Execution
 - **Bow**: Evasion Shot
@@ -19,16 +20,23 @@ It's strongly recommended to use Outward Config Manager to set HUD element posit
 - **Spear**: Simeon's Gambit
 - **One-Handed Sword**: Puncture
 - **Two-Handed Sword**: Pommel Counter
-- **Gauntlet**: Prismatic Flurry 
+- **Gauntlet**: Prismatic Flurry
+
+#### Knives Master mod weapon
+- **Knife**: Blink Strike
 
 ### Off-hand weapon skills
+#### Vanilla Outward weapons
 - **Chakram**: Chakram Pierce
 - **Dagger**: Dagger Slash
 - **Pistol**: Fire / Reload *(Note: By default, the button needs to be held to reload the pistol)*
 - **Shield**: Shield Charge
 - **Lantern/Torch**: Flamethrower
+- **Lexicon**: Rune: Shim
 
-Using the off-hand skill button with a **Lexicon** equipped has no effect.  
+#### Knives Master mod weapon
+- **Dagger** with main hand **Knife** equipped: Dual Slash
+
 *Note: You still have to learn the skill before you can use it.*
 
 ## Planned Features
@@ -49,6 +57,10 @@ If anything untoward happens (or nothing happens, which is also a problem), plea
 I'd love if you also attached a list of mods you are using, and the log from `Outward\Outward_Defed\output_log.txt`.
 
 ## Changelog
+
+### v1.5.0
+- Knives Master mod support (Main hand knife: Blink Strike, off-hand dagger with main hand knife: Dual Slash)
+- Lexicon now casts Rune: Shim on use
 
 ### v1.4.2
 - Torch and Lantern skill added (Flamethrower). This is an unstable/experimental feature. If anything breaks, use the previous version.
