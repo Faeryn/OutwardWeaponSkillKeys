@@ -1,6 +1,5 @@
 using HarmonyLib;
 using WeaponSkillKeys.Extensions;
-using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys.Patches {
 	[HarmonyPatch(typeof(Character))]
@@ -11,16 +10,7 @@ namespace WeaponSkillKeys.Patches {
 				return;
 			}
 
-			WeaponSkillDisplayGroup wsd = __instance.CharacterUI.GetWeaponSkillDisplayGroup();
-			if (wsd == null) {
-				return;
-			}
-
-			if (__instance.TryGetMainHandSkill(out Skill skill)) {
-				wsd.SetMainHandSkill(skill);
-			} else {
-				wsd.ClearMainHandSkill();
-			}
+			__instance.UpdateWeaponSkills();
 		}
 		
 		[HarmonyPatch(nameof(Character.LeftHandChanged)), HarmonyPostfix]
@@ -29,16 +19,7 @@ namespace WeaponSkillKeys.Patches {
 				return;
 			}
 
-			WeaponSkillDisplayGroup wsd = __instance.CharacterUI.GetWeaponSkillDisplayGroup();
-			if (wsd == null) {
-				return;
-			}
-
-			if (__instance.TryGetOffHandSkill(out Skill skill)) {
-				wsd.SetOffHandSkill(skill);
-			} else {
-				wsd.ClearOffHandSkill();
-			}
+			__instance.UpdateWeaponSkills();
 		}
 	}
 

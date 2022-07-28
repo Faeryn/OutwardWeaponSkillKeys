@@ -1,8 +1,28 @@
 
 using System.Collections.Generic;
+using WeaponSkillKeys.UI;
 
 namespace WeaponSkillKeys.Extensions {
 	public static class CharacterExtensions {
+
+		public static void UpdateWeaponSkills(this Character character) {
+			WeaponSkillDisplayGroup wsd = character.CharacterUI.GetWeaponSkillDisplayGroup();
+			if (wsd == null) {
+				return;
+			}
+			
+			if (character.TryGetMainHandSkill(out Skill mhSkill)) {
+				wsd.SetMainHandSkill(mhSkill);
+			} else {
+				wsd.ClearMainHandSkill();
+			}
+			
+			if (character.TryGetOffHandSkill(out Skill ohSkill)) {
+				wsd.SetOffHandSkill(ohSkill);
+			} else {
+				wsd.ClearOffHandSkill();
+			}
+		}
 
 		public static bool TryGetLearnedSkill(this Character character, int id, out Skill skill) {
 			Item item = ((List<Item>)character.Inventory.SkillKnowledge.GetLearnedItems()).FindItemFromItemID(id);
