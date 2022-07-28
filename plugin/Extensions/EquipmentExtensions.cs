@@ -26,7 +26,8 @@ namespace WeaponSkillKeys.Extensions {
 			(new WeaponTypeSelector(Weapon.WeaponType.FistW_2H), 8201040), // Prismatic Flurry
 			(new WeaponTypeSelector(Weapon.WeaponType.Shield), 8100190), // Shield Charge
 			(new WeaponTypeSelector(Weapon.WeaponType.Bow), 8100100), // Evasion Shot
-			(new IKModeSelector(Equipment.IKMode.Lantern).Or(new IKModeSelector(Equipment.IKMode.Torch)), 8100090) // Flamethrower
+			(new IKModeSelector(Equipment.IKMode.Lantern).Or(new IKModeSelector(Equipment.IKMode.Torch)), 8100090), // Flamethrower
+			(new IKModeSelector(Equipment.IKMode.Lexicon), 8100220) // Rune: Shim 
 		};
 		
 		private static readonly List<(ItemSelector, ItemSelector, int)> DualEquipmentSkills = new List<(ItemSelector, ItemSelector, int)> {
