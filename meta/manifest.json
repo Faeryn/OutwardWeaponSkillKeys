@@ -1,9 +1,9 @@
 {
     "name": "WeaponSkillKeys",
     "author": "Faeryn",
-    "version_number": "1.4.0",
+    "version_number": "1.5.0",
     "website_url": "https://github.com/Faeryn/OutwardWeaponSkillKeys",
-    "description": "Adds 2 keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. Each keybind uses a skill depending on the currently equipped weapon. Hold Fire/Reload to reload pistol (to prevent accidental reload mid-fight).",
+    "description": "Adds 2 customizable keybinds: one for a mainhand and one for an off-hand weapon specific attack skill. Each keybind uses a skill depending on the currently equipped weapon. Hold Fire/Reload to reload pistol (to prevent accidental reload mid-fight).",
     "dependencies": [
         "BepInEx-BepInExPack_Outward-5.4.18",
         "sinai-dev-SideLoader-3.7.0"

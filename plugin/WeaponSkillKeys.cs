@@ -14,7 +14,7 @@ namespace WeaponSkillKeys {
 		public const string GUID = "faeryn.weaponskillkeys";
 		public const string NAME = "WeaponSkillKeys";
 		public const string DISPLAY_NAME = "Weapon Skill Keys";
-		public const string VERSION = "1.4.0";
+		public const string VERSION = "1.5.0";
 		internal static ManualLogSource Log;
 
 		public static ConfigEntry<float> WeaponSkillKeysPosX;

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using WeaponSkillKeys.Extensions;
 
 namespace WeaponSkillKeys.UI {
     public class WeaponSkillDisplay : MonoBehaviour {
@@ -16,7 +15,7 @@ namespace WeaponSkillKeys.UI {
             Image imgNewIcon = transform.Find("imgNew").GetComponent<Image>();
             Destroy(imgNewIcon);
             
-            itemDisplay.SetLblQuantity(null);
+            itemDisplay.m_lblQuantity = null;
         }
 
         protected void Update() {
@@ -33,7 +32,7 @@ namespace WeaponSkillKeys.UI {
         }
 
         public void Clear() {
-            SkillCooldownDisplay cooldownDisplay = itemDisplay.GetCooldownDisplay();
+            SkillCooldownDisplay cooldownDisplay = itemDisplay.m_cooldownDisplay;
             if (cooldownDisplay) {
                 cooldownDisplay.SetReferencedItem(null);
             }
